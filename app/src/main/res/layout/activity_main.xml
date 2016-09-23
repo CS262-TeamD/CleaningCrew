@@ -7,10 +7,12 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="edu.calvin.cs262teamd.cleaningcrew.MainActivity">
+    tools:context="edu.calvin.cs262teamd.cleaningcrew.MainActivity"
+    android:background="#0031c4">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_cleaning_crew" />
+        android:text="Hello World!"
+        android:background="#ff90f4" />
 </RelativeLayout>
