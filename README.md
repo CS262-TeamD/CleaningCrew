@@ -1,25 +1,6 @@
 # The Vision
-To establish a mobile-friendly user database for the Building Services Office and Campus Properties, eliminating the need for paper housekeeping logs, contact lists, etc. while providing instant access to information such as time-off requests, building maps, and a connection to needed information for both student workers and supervisors.
-# The Needs
-- Building maps with room numbers
-- Ability to add info/write on the maps would help but is not a necessity
-- Contact Info
-- Name, phone, email, work area and hours
-- Housekeeping Logs
-- Check box
-- Store for 3 months then wipe
-- Auto update/link with calendar
-- Ability to leave notes (worker -> supervisor; supervisor -> worker; worker <--> worker)
-- Leave photos in notes
-- Interactive calendar for time off requests, start working time updates
-- Ability for workers to request a day off on the calendar with a pending, approved, or denied option for the supervisor.
-- Ability for supervisor to invite/uninvite workers and other supervisors.
-### List of Buildings/Work Areas
-- LLC
-- MP/CS
-- Service Bldg
-- 1310 Lake
-- 2041 Raybrook
-- Waltman Lake
-- 106 Division
-- Window Crew
+To establish a mobile-friendly user database for the Building Services Office and Campus Properties, eliminating the need for paper housekeeping logs, contact lists, etc. while providing instant access to information such as time-off requests and a connection to needed information for both student workers and supervisors.
+# The Details
+Employees can log in and see, in a simple bulleted list, all their cleaning assignments by room numbers, and check them off as they're completed. Employees and supervisors should both be able to leave comments attached to rooms that are visible between other employees and supervisors alike. Employees can easily and sraightforwardly request time off to their supervisor.
+Supervisors see a list of rooms that need cleaning, as well as a list of their available employees. Supervisors can delegate cleaning assignments to employees, write and view comments, and check if cleaning has been done. Supervisors can either approve, revise, or decline time-off and shift change requests from employees. Supervisors can also view their employees' contact information.
+Extended 'stretch' goals include having the directory of buildings and rooms visible and searchable on a map of campus, having the ability to leave photos in room comments, and linking an interactive calednar to time off request and shift alerts.
