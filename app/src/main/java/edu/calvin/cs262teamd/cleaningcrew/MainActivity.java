@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
      * @param item
      * @return true if selection valid, else call superclass method
      */
-    @Override
+    @Override 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.about_page:
