@@ -3,4 +3,8 @@
     <item
         android:id="@+id/about_page"
         android:title="About" />
+
+    <item
+        android:id="@+id/employee_contact_page"
+        android:title="Employee Contact" />
 </menu>
