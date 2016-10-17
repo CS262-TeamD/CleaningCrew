@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // set title to "Housekeeping Log"
         setTitle("Housekeeping Log");
     }
 
@@ -37,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.about_page:
                 startActivity(new Intent(getApplicationContext(), AboutActivity.class));
+                return true;
+            case R.id.employee_contacts_page:
+                startActivity(new Intent(getApplicationContext(), EmployeeContactsActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
