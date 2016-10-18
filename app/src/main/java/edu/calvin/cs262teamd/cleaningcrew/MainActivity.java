@@ -42,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.employee_contacts_page:
                 startActivity(new Intent(getApplicationContext(), EmployeeContactsActivity.class));
                 return true;
+            case R.id.settings_page:
+                startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
