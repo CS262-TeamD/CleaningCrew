@@ -36,11 +36,15 @@ public class MainActivity extends AppCompatActivity {
     @Override 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            // navigate to the about page
             case R.id.about_page:
                 startActivity(new Intent(getApplicationContext(), AboutActivity.class));
                 return true;
             case R.id.employee_contacts_page:
                 startActivity(new Intent(getApplicationContext(), EmployeeContactsActivity.class));
+                return true;
+            case R.id.settings_page:
+                startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

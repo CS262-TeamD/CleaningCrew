@@ -16,7 +16,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".AboutActivity" />
-        <activity android:name=".EmployeeContactsActivity"></activity>
+        <activity android:name=".EmployeeContactsActivity" />
+        <activity android:name=".SettingsActivity"></activity>
     </application>
 
 </manifest>
