@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.about_page:
                 startActivity(new Intent(getApplicationContext(), AboutActivity.class));
                 return true;
-            // navigate to employee contacts page
+            // go to employee contacts page
             case R.id.employee_contacts_page:
                 startActivity(new Intent(getApplicationContext(), EmployeeContactsActivity.class));
                 return true;
