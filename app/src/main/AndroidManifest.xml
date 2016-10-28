@@ -17,7 +17,8 @@
         </activity>
         <activity android:name=".AboutActivity" />
         <activity android:name=".EmployeeContactsActivity" />
-        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".LoginActivity"></activity>
     </application>
 
 </manifest>

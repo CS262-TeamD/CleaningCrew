@@ -47,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.settings_page:
                 startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
                 return true;
+            case R.id.login_page:
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
