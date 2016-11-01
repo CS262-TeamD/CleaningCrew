@@ -5,9 +5,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
 
+    private ListView taskListView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -15,6 +21,11 @@ public class MainActivity extends AppCompatActivity {
 
         // set title to "Housekeeping Log"
         setTitle("Housekeeping Log");
+
+        taskListView = (ListView) findViewById(R.id.taskListView);
+
+        updateDisplay();
+
     }
 
     /**
@@ -53,5 +64,65 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    /**
+     * Updates the display with some sample data (for now)
+     * !TODO - Update updateDisplay() method to use actual data and be able to have varying numbers of tasks in each room
+     * TODO - make the "select all" checkbox work
+     */
+    private void updateDisplay() {
+
+        ArrayList<HashMap<String, String>> data = new ArrayList<>();
+
+//        Sample Data
+        HashMap<String, String> map1 = new HashMap<>();
+        map1.put("room_name", "room 1");
+        map1.put("task1", "sample task 1");
+        map1.put("task2", "sample task 2");
+        map1.put("task3", "sample task 3");
+        data.add(map1);
+
+        HashMap<String, String> map2 = new HashMap<>();
+        map2.put("room_name", "room 2");
+        map2.put("task1", "sample task 1");
+        map2.put("task2", "sample task 2");
+        map2.put("task3", "sample task 3");
+        data.add(map2);
+
+        HashMap<String, String> map3 = new HashMap<>();
+        map3.put("room_name", "room 3");
+        map3.put("task1", "sample task 1");
+        map3.put("task2", "sample task 2");
+        map3.put("task3", "sample task 3");
+        data.add(map3);
+
+        HashMap<String, String> map4 = new HashMap<>();
+        map4.put("room_name", "room 4");
+        map4.put("task1", "sample task 1");
+        map4.put("task2", "sample task 2");
+        map4.put("task3", "sample task 3");
+        data.add(map4);
+
+        HashMap<String, String> map5 = new HashMap<>();
+        map5.put("room_name", "room 5");
+        map5.put("task1", "sample task 1");
+        map5.put("task2", "sample task 2");
+        map5.put("task3", "sample task 3");
+        data.add(map5);
+
+        HashMap<String, String> map6 = new HashMap<>();
+        map6.put("room_name", "room 6");
+        map6.put("task1", "sample task 1");
+        map6.put("task2", "sample task 2");
+        map6.put("task3", "sample task 3");
+        data.add(map6);
+
+        int resource = R.layout.task_list;
+        String[] from = {"room_name", "task1", "task2", "task3"};
+        int[] to = {R.id.room_name, R.id.task_1, R.id.task_2, R.id.task_3};
+
+        SimpleAdapter adapter = new SimpleAdapter(this, data, resource, from, to);
+        taskListView.setAdapter(adapter);
     }
 }
