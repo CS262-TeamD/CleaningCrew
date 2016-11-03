@@ -29,14 +29,6 @@ tools:context="edu.calvin.cs262teamd.cleaningcrew.LoginActivity">
     android:layout_marginTop="16dp"
     android:id="@+id/usernameEditText" />
 
-    <Button
-    android:text="Login"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/loginButton"
-    android:layout_centerVertical="true"
-    android:layout_centerHorizontal="true" />
-
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -48,6 +40,14 @@ tools:context="edu.calvin.cs262teamd.cleaningcrew.LoginActivity">
         android:layout_alignLeft="@+id/usernameEditText"
         android:layout_alignStart="@+id/usernameEditText"
         android:text="example" />
+
+    <Button
+    android:text="Login"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/loginButton"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
 
     <!--<?xml version="1.0" encoding="utf-8"?>-->

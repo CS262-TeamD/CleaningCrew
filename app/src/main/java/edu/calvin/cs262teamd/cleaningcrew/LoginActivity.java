@@ -30,25 +30,6 @@ public class LoginActivity extends AppCompatActivity {
         invalidTextView = (TextView) findViewById(R.id.invalidTextView);
         invalidTextView.setVisibility(View.GONE);
         usernameEditText = (EditText) findViewById(R.id.usernameEditText);
-        usernameEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            /* When a new value is entered into the username field the value is checked
-             *  to be the right username
-             * @param TextView v, int actionId, KeyEvent event
-             * @return true when username is "user" else return false
-             */
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                String username = usernameEditText.getText().toString();
-                Log.d(username, "asdfhkl");
-                if (username.equals("user")) {
-                    rightUsername = true;
-                } else {
-                    rightUsername = false;
-                }
-                Log.d(String.valueOf(rightUsername), "lokjvghn");
-                return false;
-            }
-        });
         /* Listener waits for a click and deletes the initial text in the username editText
          * @return void
          */
@@ -61,21 +42,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
         passwordEditText = (EditText) findViewById(R.id.passwordEditText);
-        passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                String password = passwordEditText.getText().toString();
-                // When the correct password is entered set image to visible and text to gone
-                if (password.equals("password")) {
-                    rightPassword = true;
-                } else {
-                    rightPassword = false;
-                }
-                Log.d(String.valueOf(rightUsername), "correct username");
-                Log.d(String.valueOf(rightPassword), "correct password");
-                return false;
-            }
-        });
         /* Listener waits for a click and deletes the initial text in the password editText
          * @return void
          */
@@ -91,14 +57,18 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (rightPassword && rightUsername){
-                    invalidTextView.setVisibility(View.VISIBLE);
-                    invalidTextView.setText("Welcome, User");
-                    MenuItem item = menu.findItem(R.id.main_page);
-                    switch (item.getItemId()) {
-                        case R.id.main_page:
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        default:
+                String username = usernameEditText.getText().toString();
+                String password = passwordEditText.getText().toString();
+                if (username.equals("user")) {
+                    if (password.equals("password")){
+                        invalidTextView.setVisibility(View.VISIBLE);
+                        invalidTextView.setText("Welcome, User");
+                        MenuItem item = menu.findItem(R.id.main_page);
+                        switch (item.getItemId()) {
+                            case R.id.main_page:
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            default:
+                        }
                     }
                 } else {
                     invalidTextView.setVisibility(View.VISIBLE);
