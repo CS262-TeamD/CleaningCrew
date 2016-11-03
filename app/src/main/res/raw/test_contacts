@@ -1,0 +1,8 @@
+{"employees":[
+    {"name":"John Doe", "email":"jdoe@calvin.edu", "phone":"1111111111", "hours":"8-10 MWF"},
+    {"name":"Anna Smith", "email":"asmith@calvin.edu", "phone":"2222222222", "hours":"7-10 MTWF"},
+    {"name":"Peter Jones", "email":"pjones@calvin.edu", "phone":"3333333333", "hours":"6-9 MWTF"},
+    {"name":"David Smith", "email":"dsmith@calvin.edu", "phone":"4444444444", "hours":"6-9 MWF"},
+    {"name":"Andrew Jackson", "email":"ajackson@calvin.edu", "phone":"5555555555", "hours":"6-9 MWTF"},
+    {"name":"Kyle Campbell", "email":"kcampbell@calvin.edu", "phone":"6666666666", "hours":"6-9 MWTF"}
+]}
