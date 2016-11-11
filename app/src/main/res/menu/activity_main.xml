@@ -14,7 +14,7 @@
 
     <item
         android:id="@+id/login_page"
-        android:title="Login" />
+        android:title="Log Out" />
 
     <item
         android:id="@+id/main_page"
