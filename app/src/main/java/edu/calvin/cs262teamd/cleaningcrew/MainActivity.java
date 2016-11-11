@@ -77,50 +77,64 @@ public class MainActivity extends AppCompatActivity {
 
 //        Sample Data
         HashMap<String, String> map1 = new HashMap<>();
-        map1.put("room_name", "room 1");
-        map1.put("task1", "sample task 1");
-        map1.put("task2", "sample task 2");
-        map1.put("task3", "sample task 3");
+        map1.put("room_name", "Physical Plant Front Entrance");
+        map1.put("task1", "Clean Glass");
+        map1.put("task2", "Dust");
+        map1.put("task3", "Vacuum");
+        map1.put("comment", "Make sure you vacuum in all the corners!");
         data.add(map1);
 
         HashMap<String, String> map2 = new HashMap<>();
-        map2.put("room_name", "room 2");
-        map2.put("task1", "sample task 1");
-        map2.put("task2", "sample task 2");
-        map2.put("task3", "sample task 3");
+        map2.put("room_name", "Physical Plant Front Office");
+        map2.put("task1", "Dust Ledges and Counters");
+        map2.put("task2", "Trash and Recycling");
+        map2.put("task3", "Vacuum");
+        map2.put("comment", "The windowsills were a bit dusty last time, make sure you get all of them.");
         data.add(map2);
 
         HashMap<String, String> map3 = new HashMap<>();
-        map3.put("room_name", "room 3");
-        map3.put("task1", "sample task 1");
-        map3.put("task2", "sample task 2");
-        map3.put("task3", "sample task 3");
+        map3.put("room_name", "Physical Plant South Offices/Work Areas");
+        map3.put("task1", "Trash and Recycling");
+        map3.put("task2", "Dust");
+        map3.put("task3", "Vacuum");
+        map3.put("comment", "Nice job!");
         data.add(map3);
 
         HashMap<String, String> map4 = new HashMap<>();
-        map4.put("room_name", "room 4");
-        map4.put("task1", "sample task 1");
-        map4.put("task2", "sample task 2");
-        map4.put("task3", "sample task 3");
+        map4.put("room_name", "Physical Plant Break Room");
+        map4.put("task1", "Disinfect Tables and Chairs");
+        map4.put("task2", "Clean Sink and Counters");
+        map4.put("task3", "Trash and Recycling");
+        map4.put("comment", "Please wash all the dishes in the sink when you clean it.");
         data.add(map4);
 
         HashMap<String, String> map5 = new HashMap<>();
-        map5.put("room_name", "room 5");
-        map5.put("task1", "sample task 1");
-        map5.put("task2", "sample task 2");
-        map5.put("task3", "sample task 3");
+        map5.put("room_name", "Physical Plant Mechanical Maint. Office");
+        map5.put("task1", "Dust");
+        map5.put("task2", "Sweep/Wet Mop");
+        map5.put("task3", "Trash and Recycling");
+        map5.put("comment", "Looks good, keep up the good work!");
         data.add(map5);
 
         HashMap<String, String> map6 = new HashMap<>();
-        map6.put("room_name", "room 6");
-        map6.put("task1", "sample task 1");
-        map6.put("task2", "sample task 2");
-        map6.put("task3", "sample task 3");
+        map6.put("room_name", "Physical Plant North Offices and Hallway");
+        map6.put("task1", "Trash and Recycling");
+        map6.put("task2", "Dust");
+        map6.put("task3", "Vacuum");
+        map6.put("comment", "No comment.");
         data.add(map6);
 
+        HashMap<String, String> map7 = new HashMap<>();
+        map7.put("room_name", "Physical Plant Main Restrooms");
+        map7.put("task1", "Sweep/Wet Mop");
+        map7.put("task2", "Disinfect Toilets/Urinals & Sinks ");
+        map7.put("task3", "Clean Glass");
+        map7.put("comment", "Sorry the bathrooms are so nasty today...");
+        data.add(map7);
+
         int resource = R.layout.task_list;
-        String[] from = {"room_name", "task1", "task2", "task3"};
-        int[] to = {R.id.room_name, R.id.task_1, R.id.task_2, R.id.task_3};
+        String[] from = {"room_name", "task1", "task2", "task3", "comment"};
+        int[] to = {R.id.room_name, R.id.task_1, R.id.task_2, R.id.task_3, R.id.commentBox};
 
         SimpleAdapter adapter = new SimpleAdapter(this, data, resource, from, to);
         taskListView.setAdapter(adapter);
