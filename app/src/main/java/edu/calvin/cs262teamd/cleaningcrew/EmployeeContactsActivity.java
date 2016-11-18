@@ -20,6 +20,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static android.icu.lang.UCharacter.toLowerCase;
+
 public class EmployeeContactsActivity extends AppCompatActivity {
 
     private ListView employeeListView;
@@ -156,7 +158,7 @@ public class EmployeeContactsActivity extends AppCompatActivity {
             SearchView sv = (SearchView) findViewById(R.id.action_search);
             try  {
                 JSONObject employee = employees.getJSONObject(i);
-                if(employee.getString("name").contains(search)) {
+                if(toLowerCase(employee.getString("name")).contains(toLowerCase(search))) {
                     HashMap<String, String> map = new HashMap<>();
                     map.put("employee_name", employee.getString("name"));
                     map.put("number", employee.getString("phone"));
