@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.view.View.OnKeyListener;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -41,7 +42,57 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+        usernameEditText.setOnKeyListener(new OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if(keyCode == KeyEvent.KEYCODE_ENTER) {
+                    String username = usernameEditText.getText().toString();
+                    String password = passwordEditText.getText().toString();
+                    if (username.equals("user")) {
+                        if (password.equals("password")){
+                            invalidTextView.setVisibility(View.VISIBLE);
+                            invalidTextView.setText("Welcome, User");
+                            MenuItem item = menu.findItem(R.id.main_page);
+                            switch (item.getItemId()) {
+                                case R.id.main_page:
+                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                default:
+                            }
+                        }
+                    } else {
+                        invalidTextView.setVisibility(View.VISIBLE);
+                    }
+                    return true;
+                }
+                return false;
+            }
+        });
         passwordEditText = (EditText) findViewById(R.id.passwordEditText);
+        passwordEditText.setOnKeyListener(new OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if(keyCode == KeyEvent.KEYCODE_ENTER) {
+                    String username = usernameEditText.getText().toString();
+                    String password = passwordEditText.getText().toString();
+                    if (username.equals("user")) {
+                        if (password.equals("password")){
+                            invalidTextView.setVisibility(View.VISIBLE);
+                            invalidTextView.setText("Welcome, User");
+                            MenuItem item = menu.findItem(R.id.main_page);
+                            switch (item.getItemId()) {
+                                case R.id.main_page:
+                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                default:
+                            }
+                        }
+                    } else {
+                        invalidTextView.setVisibility(View.VISIBLE);
+                    }
+                    return true;
+                }
+                return false;
+            }
+        });
         /* Listener waits for a click and deletes the initial text in the password editText
          * @return void
          */
