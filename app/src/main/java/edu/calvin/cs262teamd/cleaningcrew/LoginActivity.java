@@ -37,60 +37,64 @@ public class LoginActivity extends AppCompatActivity {
         usernameEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(usernameEditText.getText().toString().equals("Username")){
-                    usernameEditText.setText("");
-                }
+            if(usernameEditText.getText().toString().equals("Username")){
+                usernameEditText.setText("");
+            }
             }
         });
         usernameEditText.setOnKeyListener(new OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if(keyCode == KeyEvent.KEYCODE_ENTER) {
-                    String username = usernameEditText.getText().toString();
-                    String password = passwordEditText.getText().toString();
-                    if (username.equals("user")) {
-                        if (password.equals("password")){
-                            invalidTextView.setVisibility(View.VISIBLE);
-                            invalidTextView.setText("Welcome, User");
-                            MenuItem item = menu.findItem(R.id.main_page);
-                            switch (item.getItemId()) {
-                                case R.id.main_page:
-                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                                default:
-                            }
-                        }
-                    } else {
+            if(keyCode == KeyEvent.KEYCODE_ENTER) {
+                String username = usernameEditText.getText().toString();
+                String password = passwordEditText.getText().toString();
+                if (username.equals("user")) {
+                    if (password.equals("password")){
                         invalidTextView.setVisibility(View.VISIBLE);
+                        invalidTextView.setText("Welcome, User");
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     }
-                    return true;
                 }
-                return false;
+                else if (username.equals("admin")) {
+                    if (password.equals("second")) {
+                        invalidTextView.setVisibility(View.VISIBLE);
+                        invalidTextView.setText("Welcome, Admin");
+                        startActivity(new Intent(getApplicationContext(), Main2Activity.class));
+                    }
+                } else {
+                    invalidTextView.setVisibility(View.VISIBLE);
+                }
+                return true;
+            }
+            return false;
             }
         });
         passwordEditText = (EditText) findViewById(R.id.passwordEditText);
         passwordEditText.setOnKeyListener(new OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if(keyCode == KeyEvent.KEYCODE_ENTER) {
-                    String username = usernameEditText.getText().toString();
-                    String password = passwordEditText.getText().toString();
-                    if (username.equals("user")) {
-                        if (password.equals("password")){
-                            invalidTextView.setVisibility(View.VISIBLE);
-                            invalidTextView.setText("Welcome, User");
-                            MenuItem item = menu.findItem(R.id.main_page);
-                            switch (item.getItemId()) {
-                                case R.id.main_page:
-                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                                default:
-                            }
-                        }
-                    } else {
+            if(keyCode == KeyEvent.KEYCODE_ENTER) {
+                String username = usernameEditText.getText().toString();
+                String password = passwordEditText.getText().toString();
+                if (username.equals("user")) {
+                    if (password.equals("password")){
                         invalidTextView.setVisibility(View.VISIBLE);
+                        invalidTextView.setText("Welcome, User");
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     }
-                    return true;
                 }
-                return false;
+                else if (username.equals("admin")) {
+                    if (password.equals("second")) {
+                        invalidTextView.setVisibility(View.VISIBLE);
+                        invalidTextView.setText("Welcome, Admin");
+                        startActivity(new Intent(getApplicationContext(), Main2Activity.class));
+                    }
+                } else {
+                    invalidTextView.setVisibility(View.VISIBLE);
+                }
+                return true;
+            }
+            return false;
             }
         });
         /* Listener waits for a click and deletes the initial text in the password editText
@@ -108,32 +112,34 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String username = usernameEditText.getText().toString();
-                String password = passwordEditText.getText().toString();
-                if (username.equals("user")) {
-                    if (password.equals("password")){
-                        invalidTextView.setVisibility(View.VISIBLE);
-                        invalidTextView.setText("Welcome, User");
-                        MenuItem item = menu.findItem(R.id.main_page);
-                        switch (item.getItemId()) {
-                            case R.id.main_page:
-                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                            default:
-                        }
-                    }
-                } else {
+            String username = usernameEditText.getText().toString();
+            String password = passwordEditText.getText().toString();
+            if (username.equals("user")) {
+                if (password.equals("password")){
                     invalidTextView.setVisibility(View.VISIBLE);
+                    invalidTextView.setText("Welcome, User");
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 }
+            }
+            else if (username.equals("admin")) {
+                if (password.equals("second")) {
+                    invalidTextView.setVisibility(View.VISIBLE);
+                    invalidTextView.setText("Welcome, Admin");
+                    startActivity(new Intent(getApplicationContext(), Main2Activity.class));
+                }
+            } else {
+                invalidTextView.setVisibility(View.VISIBLE);
+            }
             }
         });
     }
 
 
-    // Initilizes the menu for the app
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_main, menu);
-        this.menu = menu;
-        return true;
-    }
+//    // Initilizes the menu for the app
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.activity_main, menu);
+//        this.menu = menu;
+//        return true;
+//    }
 }
