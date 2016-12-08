@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="TEST" />
     <item android:id="@+id/admin_main" android:title="Main" />
     <item android:id="@+id/add_employee" android:title="Add An Employee" />
+    <item android:id="@+id/admin_logout" android:title="Log Out"/>
 
 </menu>
