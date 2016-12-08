@@ -55,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
             case R.id.employee_contacts_page:
                 startActivity(new Intent(getApplicationContext(), EmployeeContactsActivity.class));
                 return true;
-            case R.id.settings_page:
-                startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
+            case R.id.userinfo_page:
+                startActivity(new Intent(getApplicationContext(), UserInfoActivity.class));
                 return true;
             case R.id.login_page:
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));

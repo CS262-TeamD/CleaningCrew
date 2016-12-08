@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/main_page"
+        android:title="Main" />
+
+    <item
         android:id="@+id/about_page"
         android:title="About" />
 
@@ -9,14 +13,11 @@
         android:title="Employee Contacts" />
 
     <item
-        android:id="@+id/settings_page"
-        android:title="Settings" />
+        android:id="@+id/userinfo_page"
+        android:title="My Info" />
 
     <item
         android:id="@+id/login_page"
         android:title="Log Out" />
 
-    <item
-        android:id="@+id/main_page"
-        android:title="Main" />
 </menu>

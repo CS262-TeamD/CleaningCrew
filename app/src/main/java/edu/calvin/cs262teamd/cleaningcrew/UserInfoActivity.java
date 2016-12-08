@@ -3,7 +3,7 @@ package edu.calvin.cs262teamd.cleaningcrew;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class SettingsActivity extends AppCompatActivity {
+public class UserInfoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
