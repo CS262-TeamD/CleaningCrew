@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:elevation="8dp"
+    android:background="@android:color/white"
+    android:weightSum="1">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="RoomName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/admin_room_name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:layout_toLeftOf="@+id/admin_checkBox"
+            android:layout_toStartOf="@+id/admin_checkBox" />
+
+        <CheckBox
+            android:text="Select All"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/admin_checkBox"
+            android:layout_weight="1"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+
+    <CheckBox
+        android:text="CheckBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/admin_task_1" />
+
+    <CheckBox
+        android:text="CheckBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/admin_task_2" />
+
+    <CheckBox
+        android:text="CheckBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/admin_task_3" />
+
+    <EditText
+        android:text="CommentBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textCapSentences|textMultiLine"
+        android:maxLines="4"
+        android:maxLength="200"
+        android:id="@+id/admin_commentBox"
+        android:ems="10" />
+
+    <Button
+        android:text="Submit Comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/admin_submit_comment" />
+
+</LinearLayout>
