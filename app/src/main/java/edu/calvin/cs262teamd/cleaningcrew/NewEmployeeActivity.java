@@ -25,7 +25,7 @@ public class NewEmployeeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //                TODO - Do something with the new user name and ID
-                startActivity(new Intent(getApplicationContext(), Main2Activity.class));
+                startActivity(new Intent(getApplicationContext(), AdminMainActivity.class));
             }
         });
     }
@@ -43,7 +43,7 @@ public class NewEmployeeActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), NewEmployeeActivity.class));
                 return true;
             case R.id.admin_main:
-                startActivity(new Intent(getApplicationContext(), Main2Activity.class));
+                startActivity(new Intent(getApplicationContext(), AdminMainActivity.class));
                 return true;
             case R.id.admin_logout:
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
