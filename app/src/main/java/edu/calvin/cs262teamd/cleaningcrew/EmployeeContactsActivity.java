@@ -97,29 +97,19 @@ public class EmployeeContactsActivity extends AppCompatActivity {
      *
      * TODO: Change from reading from file to reading from DB.
      */
-    public void getEmployees() {
+    private void getEmployees() {
         // InputStream to the text file
         InputStream is = getBaseContext().getResources().openRawResource(R.raw.test_contacts);
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
         StringBuilder sb = new StringBuilder();
-        String line = null;
-
-        String employeearray = null;
-        JSONObject jobject = null;
-
+        String line;
         try {
             while ((line = reader.readLine()) != null) {
                 sb.append(line);
             }
-            employeearray = sb.toString();
-            jobject = new JSONObject(employeearray);
-            if(jobject!=null) {
-                employees = jobject.getJSONArray("employees");
-            }
-        } catch (java.io.IOException ioe) {
+            employees = new JSONObject(sb.toString()).getJSONArray("employees");
+        } catch (java.io.IOException | org.json.JSONException ioe) {
             ioe.printStackTrace();
-        } catch (org.json.JSONException je) {
-            je.printStackTrace();
         }
     }
 
@@ -147,13 +137,11 @@ public class EmployeeContactsActivity extends AppCompatActivity {
      * @param String search, the desired search pattern.
      * @return ArrayList, the list of employees that satisfy the search terms.
      *
-     * TODO: Make so capitalizations don't matter.
      */
-    public ArrayList<HashMap<String, String>> getData(String search) {
+    private ArrayList<HashMap<String, String>> getData(String search) {
 
         ArrayList<HashMap<String, String>> data = new ArrayList<>();
         for(Integer i=0; i < employees.length(); i++) {
-            SearchView sv = (SearchView) findViewById(R.id.action_search);
             try  {
                 JSONObject employee = employees.getJSONObject(i);
                 if(employee.getString("name").contains(search)) {
