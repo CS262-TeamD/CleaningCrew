@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/main_page"
-        android:title="Main" />
+    <item android:title="Main" />
 
     <item
         android:id="@+id/about_page"
@@ -13,7 +11,7 @@
         android:title="Employee Contacts" />
 
     <item
-        android:id="@+id/userinfo_page"
+        android:id="@+id/user_info_page"
         android:title="My Info" />
 
     <item

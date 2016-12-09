@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Determines behavior of the options menu in the action bar
-     * @param menu
+     * @param menu the menu object associated with this view to be inflated within this method
      * @return true
      */
     @Override
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Handles the user selection of an item in the options menu
-     * @param item
+     * @param item the selected menu item
      * @return true if selection valid, else call superclass method
      */
     @Override 
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.employee_contacts_page:
                 startActivity(new Intent(getApplicationContext(), EmployeeContactsActivity.class));
                 return true;
-            case R.id.userinfo_page:
+            case R.id.user_info_page:
                 startActivity(new Intent(getApplicationContext(), UserInfoActivity.class));
                 return true;
             case R.id.login_page:

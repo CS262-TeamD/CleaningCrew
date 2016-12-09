@@ -8,10 +8,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-/**
- * Created by Caleb on 12/7/16.
- */
-
 public class NewEmployeeActivity extends AppCompatActivity {
 
     @Override

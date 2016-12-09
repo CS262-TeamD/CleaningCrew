@@ -3,10 +3,7 @@ package edu.calvin.cs262teamd.cleaningcrew;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,13 +12,9 @@ import android.view.View.OnKeyListener;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private Menu menu;
     private EditText usernameEditText;
     private EditText passwordEditText;
     private TextView invalidTextView;
-    private Button loginButton;
-    private boolean rightPassword;
-    private boolean rightUsername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,21 +41,24 @@ public class LoginActivity extends AppCompatActivity {
             if(keyCode == KeyEvent.KEYCODE_ENTER) {
                 String username = usernameEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
-                if (username.equals("user")) {
-                    if (password.equals("password")){
+                switch (username) {
+                    case "user":
+                        if (password.equals("password")) {
+                            invalidTextView.setVisibility(View.VISIBLE);
+                            invalidTextView.setText("Welcome, User");
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        }
+                        break;
+                    case "admin":
+                        if (password.equals("second")) {
+                            invalidTextView.setVisibility(View.VISIBLE);
+                            invalidTextView.setText("Welcome, Admin");
+                            startActivity(new Intent(getApplicationContext(), AdminMainActivity.class));
+                        }
+                        break;
+                    default:
                         invalidTextView.setVisibility(View.VISIBLE);
-                        invalidTextView.setText("Welcome, User");
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    }
-                }
-                else if (username.equals("admin")) {
-                    if (password.equals("second")) {
-                        invalidTextView.setVisibility(View.VISIBLE);
-                        invalidTextView.setText("Welcome, Admin");
-                        startActivity(new Intent(getApplicationContext(), AdminMainActivity.class));
-                    }
-                } else {
-                    invalidTextView.setVisibility(View.VISIBLE);
+                        break;
                 }
                 return true;
             }
@@ -76,21 +72,24 @@ public class LoginActivity extends AppCompatActivity {
             if(keyCode == KeyEvent.KEYCODE_ENTER) {
                 String username = usernameEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
-                if (username.equals("user")) {
-                    if (password.equals("password")){
+                switch (username) {
+                    case "user":
+                        if (password.equals("password")) {
+                            invalidTextView.setVisibility(View.VISIBLE);
+                            invalidTextView.setText("Welcome, User");
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        }
+                        break;
+                    case "admin":
+                        if (password.equals("second")) {
+                            invalidTextView.setVisibility(View.VISIBLE);
+                            invalidTextView.setText("Welcome, Admin");
+                            startActivity(new Intent(getApplicationContext(), AdminMainActivity.class));
+                        }
+                        break;
+                    default:
                         invalidTextView.setVisibility(View.VISIBLE);
-                        invalidTextView.setText("Welcome, User");
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    }
-                }
-                else if (username.equals("admin")) {
-                    if (password.equals("second")) {
-                        invalidTextView.setVisibility(View.VISIBLE);
-                        invalidTextView.setText("Welcome, Admin");
-                        startActivity(new Intent(getApplicationContext(), AdminMainActivity.class));
-                    }
-                } else {
-                    invalidTextView.setVisibility(View.VISIBLE);
+                        break;
                 }
                 return true;
             }
@@ -108,38 +107,32 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-        loginButton = (Button) findViewById(R.id.loginButton);
+        Button loginButton = (Button) findViewById(R.id.loginButton);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
             String username = usernameEditText.getText().toString();
             String password = passwordEditText.getText().toString();
-            if (username.equals("user")) {
-                if (password.equals("password")){
-                    invalidTextView.setVisibility(View.VISIBLE);
-                    invalidTextView.setText("Welcome, User");
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                switch (username) {
+                    case "user":
+                        if (password.equals("password")) {
+                            invalidTextView.setVisibility(View.VISIBLE);
+                            invalidTextView.setText("Welcome, User");
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        }
+                        break;
+                    case "admin":
+                        if (password.equals("second")) {
+                            invalidTextView.setVisibility(View.VISIBLE);
+                            invalidTextView.setText("Welcome, Admin");
+                            startActivity(new Intent(getApplicationContext(), AdminMainActivity.class));
+                        }
+                        break;
+                    default:
+                        invalidTextView.setVisibility(View.VISIBLE);
+                        break;
                 }
-            }
-            else if (username.equals("admin")) {
-                if (password.equals("second")) {
-                    invalidTextView.setVisibility(View.VISIBLE);
-                    invalidTextView.setText("Welcome, Admin");
-                    startActivity(new Intent(getApplicationContext(), AdminMainActivity.class));
-                }
-            } else {
-                invalidTextView.setVisibility(View.VISIBLE);
-            }
             }
         });
     }
-
-
-//    // Initilizes the menu for the app
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.activity_main, menu);
-//        this.menu = menu;
-//        return true;
-//    }
 }
