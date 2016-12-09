@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
                     if (password.equals("second")) {
                         invalidTextView.setVisibility(View.VISIBLE);
                         invalidTextView.setText("Welcome, Admin");
-                        startActivity(new Intent(getApplicationContext(), Main2Activity.class));
+                        startActivity(new Intent(getApplicationContext(), AdminMainActivity.class));
                     }
                 } else {
                     invalidTextView.setVisibility(View.VISIBLE);
@@ -87,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
                     if (password.equals("second")) {
                         invalidTextView.setVisibility(View.VISIBLE);
                         invalidTextView.setText("Welcome, Admin");
-                        startActivity(new Intent(getApplicationContext(), Main2Activity.class));
+                        startActivity(new Intent(getApplicationContext(), AdminMainActivity.class));
                     }
                 } else {
                     invalidTextView.setVisibility(View.VISIBLE);
@@ -125,7 +125,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (password.equals("second")) {
                     invalidTextView.setVisibility(View.VISIBLE);
                     invalidTextView.setText("Welcome, Admin");
-                    startActivity(new Intent(getApplicationContext(), Main2Activity.class));
+                    startActivity(new Intent(getApplicationContext(), AdminMainActivity.class));
                 }
             } else {
                 invalidTextView.setVisibility(View.VISIBLE);
