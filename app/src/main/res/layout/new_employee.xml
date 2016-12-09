@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:text="Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="75dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginTop="50dp"
+        android:id="@+id/newUserNameLabel"
+        android:textSize="24sp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:ems="10"
+        android:id="@+id/newUserNameText"
+        android:layout_alignBaseline="@+id/newUserNameLabel"
+        android:layout_alignBottom="@+id/newUserNameLabel"
+        android:layout_toRightOf="@+id/newUserNameLabel"
+        android:layout_toEndOf="@+id/newUserNameLabel"
+        android:layout_marginLeft="21dp"
+        android:layout_marginStart="21dp" />
+
+    <TextView
+        android:text="Email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/newUserIDLabel"
+        android:textSize="24sp"
+        android:layout_below="@+id/newUserNameLabel"
+        android:layout_toLeftOf="@+id/newUserNameText"
+        android:layout_toStartOf="@+id/newUserNameText"
+        android:layout_marginTop="10dp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text='"abc123"'
+        android:ems="10"
+        android:id="@+id/newUserIDText"
+        android:layout_alignBaseline="@+id/newUserIDLabel"
+        android:layout_alignBottom="@+id/newUserIDLabel"
+        android:layout_alignLeft="@+id/newUserNameText"
+        android:layout_alignStart="@+id/newUserNameText" />
+
+    <Button
+        android:text="Submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        android:id="@+id/newUserSubmitButton"
+        android:layout_below="@+id/newUserIDText"
+        android:layout_centerHorizontal="true"
+        android:elevation="0dp" />
+</RelativeLayout>

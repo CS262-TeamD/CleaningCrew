@@ -17,9 +17,10 @@
         </activity>
         <activity android:name=".AboutActivity" />
         <activity android:name=".EmployeeContactsActivity" />
-        <activity android:name=".SettingsActivity" />
+        <activity android:name=".UserInfoActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".Main2Activity"></activity>
+        <activity android:name=".Main2Activity"/>
+        <activity android:name=".NewEmployeeActivity"/>
     </application>
 
 </manifest>

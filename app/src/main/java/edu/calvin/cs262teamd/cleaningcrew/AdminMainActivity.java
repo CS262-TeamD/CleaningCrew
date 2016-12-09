@@ -1,14 +1,17 @@
 package edu.calvin.cs262teamd.cleaningcrew;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Main2Activity extends AppCompatActivity {
+public class AdminMainActivity extends AppCompatActivity {
 
     private ListView adminTaskListView;
 
@@ -96,5 +99,21 @@ public class Main2Activity extends AppCompatActivity {
 
         SimpleAdapter adapter = new SimpleAdapter(this, data, resource, from, to);
         adminTaskListView.setAdapter(adapter);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.admin_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.add_employee:
+                startActivity(new Intent(getApplicationContext(), NewEmployeeActivity.class));
+                return true;
+        }
+        return true;
     }
 }
