@@ -219,7 +219,7 @@ public class AdminMainActivity extends AppCompatActivity {
             try {
                 JSONObject jsonData = new JSONObject();
                 jsonData.put("id", 0);
-                jsonData.put("comment", "");
+                jsonData.put("comment", "Good job!");
                 connection = (HttpURLConnection) params[0].openConnection();
                 connection.setRequestMethod("PUT");
                 connection.setDoOutput(true);
@@ -337,7 +337,7 @@ public class AdminMainActivity extends AppCompatActivity {
 
     }
 
-    public void postComments() {
+    public void postComments(View view) {
         new PutComment().execute(createURL("comment"));
     }
 }
