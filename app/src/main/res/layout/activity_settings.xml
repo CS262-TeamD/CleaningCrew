@@ -18,6 +18,7 @@
         android:textSize="18sp"/>
 
     <EditText
+        android:id="@+id/editTextPhoneNumberInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="phone"
@@ -37,6 +38,7 @@
         android:layout_below="@+id/settingsPhoneNumberTextView"/>
 
     <EditText
+        android:id="@+id/editTextEmailInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
@@ -48,13 +50,13 @@
         android:layout_alignParentEnd="true" />
 
     <Button
-        android:text="Sign Out"
+        android:text="Submit"
+        android:id="@+id/submitContactInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/settingsPhoneNumberTextView"
-        android:layout_toEndOf="@+id/settingsPhoneNumberTextView"
-        android:layout_marginBottom="11dp"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/editTextEmailInfo"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
