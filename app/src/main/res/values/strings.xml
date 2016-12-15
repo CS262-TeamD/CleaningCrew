@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Cleaning Crew</string>
+    <string name="connection_error">Failed to connect to service…</string>
 </resources>

@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,23 +41,6 @@ public class AdminMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin_main);
 
         adminTaskListView = (ListView) findViewById(R.id.adminTaskListView);
-
-        Button submitCommentsButton = (Button) findViewById(R.id.admin_submit_comment);
-
-        EditText adminCommentBox = (EditText) findViewById(R.id.admin_commentBox);
-
-//        LinearLayout parentRow = (LinearLayout) adminTaskListView.getParent();
-//
-//        submitCommentsButton = (Button) parentRow.getChildAt(6);
-//
-//        View.OnClickListener buttonClick = new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                new PutComment().execute(createURL("3"));
-//            }
-//        };
-//
-//        submitCommentsButton.setOnClickListener(buttonClick);
 
         new GetPlayerTask().execute(createURL("task/cjp27"));
 
@@ -84,9 +68,9 @@ public class AdminMainActivity extends AppCompatActivity {
     }
 
     /**
-     * Updates the display with some sample data (for now)
-     * !TODO - Update updateDisplay() method to use actual data and be able to have varying numbers of tasks in each room
-     * TODO - make the "select all" checkbox work
+     * updateDisplay() - Populates the main page of the app with values from the housekeeping log
+     * @param: None
+     * @return: a basic housekeeping log
      */
     private void updateDisplay() {
 
@@ -95,7 +79,6 @@ public class AdminMainActivity extends AppCompatActivity {
 
         int i = 0;
         for (MainTask item : adminTaskList) {
-            Log.d("Comment", Integer.toString(i));
             if (i == 0) {
                 HashMap<String, String> map1 = new HashMap<>();
                 map1.put("room_name", "Physical Plant Front Entrance");
@@ -173,8 +156,7 @@ public class AdminMainActivity extends AppCompatActivity {
 
     /**
      * Formats a URL for the webservice specified in the string resources.
-     *
-     * @return URL formatted for openweathermap.com
+     * @param: id (type -> String)
      */
     private URL createURL(String id) {
         try {
@@ -182,18 +164,27 @@ public class AdminMainActivity extends AppCompatActivity {
             String urlString = "http://cs262.cs.calvin.edu:8084/cs262dCleaningCrew/" + id;
             return new URL(urlString);
         } catch (Exception e) {
-//            Toast.makeText(this, getString(R.string.connection_error), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.connection_error), Toast.LENGTH_SHORT).show();
         }
 
         return null;
     }
 
+    /**
+     * onCreateOptionsMenu() - populates the menu with different activities
+     * @param menu (type -> Menu)
+     * @return a basic menu
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.admin_menu, menu);
         return true;
     }
 
+    /**
+     * onOptionsItemSelected() - contains the activities that are to go into the menu
+     * @param item (type -> MenuItem)
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -211,8 +202,7 @@ public class AdminMainActivity extends AppCompatActivity {
 
     private class PutComment extends AsyncTask<URL, Void, JSONArray> {
         @Override
-        protected JSONArray doInBackground(URL...
-                                                   params) {
+        protected JSONArray doInBackground(URL... params) {
             HttpURLConnection connection = null;
             StringBuilder jsonText = new StringBuilder();
             JSONArray result = null;
@@ -262,7 +252,6 @@ public class AdminMainActivity extends AppCompatActivity {
 
         @Override
         protected JSONArray doInBackground(URL... params) {
-            Log.d("player", "test");
             HttpURLConnection connection = null;
             StringBuilder jsonText = new StringBuilder();
             JSONArray result = null;
@@ -272,11 +261,9 @@ public class AdminMainActivity extends AppCompatActivity {
                     BufferedReader reader = new BufferedReader(
                             new InputStreamReader(connection.getInputStream()));
                     String line;
-                    Log.d("player", "here");
                     while ((line = reader.readLine()) != null) {
                         jsonText.append(line);
                     }
-                    //Log.d(TAG, jsonText.toString());
                     if (jsonText.charAt(0) == '[') {
                         result = new JSONArray(jsonText.toString());
                     } else if (jsonText.toString().equals("null")) {
@@ -302,9 +289,9 @@ public class AdminMainActivity extends AppCompatActivity {
         protected void onPostExecute(JSONArray players) {
             adminTaskList.clear();
             if (players == null) {
-                // Toast.makeText(MainActivity.this, getString(R.string.connection_error), Toast.LENGTH_SHORT).show();
+                 Toast.makeText(AdminMainActivity.this, getString(R.string.connection_error), Toast.LENGTH_SHORT).show();
             } else if (players.length() == 0) {
-//                Toast.makeText(MainActivity.this, getString(R.string.connection_error), Toast.LENGTH_SHORT).show();
+                Toast.makeText(AdminMainActivity.this, getString(R.string.connection_error), Toast.LENGTH_SHORT).show();
             } else {
                 convertJSONtoArrayList(players);
             }
@@ -320,14 +307,14 @@ public class AdminMainActivity extends AppCompatActivity {
         private void convertJSONtoArrayList(JSONArray players) {
             try {
                 for (int i = 0; i < players.length(); i++) {
-                    JSONObject player = players.getJSONObject(i);
+                    JSONObject employers = players.getJSONObject(i);
                     adminTaskList.add(new MainTask(
-                            player.getInt("id"),
-                            player.optString("description", "no name"),
-                            player.getInt("roomNumber"),
-                            player.optString("buildingName", "no email"),
-                            player.optString("comment"),
-                            player.getBoolean("isComplete")
+                            employers.getInt("id"),
+                            employers.optString("description", "no name"),
+                            employers.getInt("roomNumber"),
+                            employers.optString("buildingName", "no email"),
+                            employers.optString("comment"),
+                            employers.getBoolean("isComplete")
                     ));
                 }
             } catch (JSONException e) {
@@ -337,6 +324,10 @@ public class AdminMainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * postComments() - posts comments to the server
+     * @param view (type -> View)
+     */
     public void postComments(View view) {
         new PutComment().execute(createURL("comment"));
     }
