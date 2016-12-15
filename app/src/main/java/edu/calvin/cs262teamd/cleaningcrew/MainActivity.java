@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -82,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
             String urlString = "http://cs262.cs.calvin.edu:8084/cs262dCleaningCrew/task/cjp27";
             return new URL(urlString);
         } catch (Exception e) {
-//            Toast.makeText(this, getString(R.string.connection_error), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.connection_error), Toast.LENGTH_SHORT).show();
         }
 
         return null;
@@ -92,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected JSONArray doInBackground(URL... params) {
-            Log.d("player", "test");
             HttpURLConnection connection = null;
             StringBuilder jsonText = new StringBuilder();
             JSONArray result = null;
@@ -106,7 +106,6 @@ public class MainActivity extends AppCompatActivity {
                     while ((line = reader.readLine()) != null) {
                         jsonText.append(line);
                     }
-                    //Log.d(TAG, jsonText.toString());
                     if (jsonText.charAt(0) == '[') {
                         result = new JSONArray(jsonText.toString());
                     } else if (jsonText.toString().equals("null")) {
@@ -132,9 +131,9 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(JSONArray players) {
             taskList.clear();
             if (players == null) {
-                // Toast.makeText(MainActivity.this, getString(R.string.connection_error), Toast.LENGTH_SHORT).show();
+                 Toast.makeText(MainActivity.this, getString(R.string.connection_error), Toast.LENGTH_SHORT).show();
             } else if (players.length() == 0) {
-//                Toast.makeText(MainActivity.this, getString(R.string.connection_error), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, getString(R.string.connection_error), Toast.LENGTH_SHORT).show();
             } else {
                 convertJSONtoArrayList(players);
             }
@@ -149,14 +148,14 @@ public class MainActivity extends AppCompatActivity {
         private void convertJSONtoArrayList(JSONArray players) {
             try {
                 for (int i = 0; i < players.length(); i++) {
-                    JSONObject player = players.getJSONObject(i);
+                    JSONObject employee = players.getJSONObject(i);
                     taskList.add(new MainTask(
-                            player.getInt("id"),
-                            player.optString("description", "no name"),
-                            player.getInt("roomNumber"),
-                            player.optString("buildingName", "no email"),
-                            player.optString("comment"),
-                            player.getBoolean("isComplete")
+                            employee.getInt("id"),
+                            employee.optString("description", "no name"),
+                            employee.getInt("roomNumber"),
+                            employee.optString("buildingName", "no email"),
+                            employee.optString("comment"),
+                            employee.getBoolean("isComplete")
                     ));
                 }
             } catch (JSONException e) {
@@ -206,7 +205,6 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Updates the display with some sample data (for now)
-     * !TODO - Update updateDisplay() method to use actual data and be able to have varying numbers of tasks in each room
      */
     private void updateDisplay() {
 
