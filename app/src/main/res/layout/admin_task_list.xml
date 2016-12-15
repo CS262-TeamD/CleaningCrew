@@ -63,6 +63,8 @@
         android:text="Submit Comment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/admin_submit_comment" />
+        android:id="@+id/admin_submit_comment"
+        android:onClick="postComments"
+        android:clickable="true"/>
 
 </LinearLayout>

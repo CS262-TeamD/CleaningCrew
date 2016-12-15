@@ -20,6 +20,7 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -41,9 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d("begin", "get");
         new GetPlayerTask().execute(createURL());
-        new GetTask().execute(createURL());
 
-        // updateDisplay();
+         updateDisplay();
     }
 
     /**
@@ -63,43 +63,6 @@ public class MainActivity extends AppCompatActivity {
         return null;
     }
 
-    /**
-     * Inner class for GETing the current weather data from openweathermap.org asynchronously
-     */
-    private class GetTask extends AsyncTask<URL, Void, JSONObject> {
-
-        @Override
-        protected JSONObject doInBackground(URL... params) {
-
-            Log.d("here", "test");
-            HttpURLConnection connection = null;
-            StringBuilder jsonText = new StringBuilder();
-            JSONArray new_result = null;
-            try {
-                JSONObject jsonData = new JSONObject();
-                //Log.d(new_url.toString(), "test");
-                connection = (HttpURLConnection) params[0].openConnection();
-                connection.setRequestMethod("GET");
-                connection.setDoOutput(true);
-                connection.setRequestProperty("Content-Type", "application/json");
-                connection.setFixedLengthStreamingMode(jsonData.toString().length());
-                DataOutputStream out = new DataOutputStream(connection.getOutputStream());
-                out.writeBytes(jsonData.toString());
-                out.flush();
-                out.close();
-                Log.d(params[0].toString(), "test");
-                Log.d("put output", connection.getInputStream().toString());
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                Log.d("put output", "test");
-                connection.disconnect();
-            }
-
-            return null;
-        }
-    }
     private class GetPlayerTask extends AsyncTask<URL, Void, JSONArray> {
 
         @Override
@@ -168,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
                             player.optString("description", "no name"),
                             player.getInt("roomNumber"),
                             player.optString("buildingName", "no email"),
+                            player.optString("comment"),
                             player.getBoolean("isComplete")
                     ));
                 }
@@ -223,64 +187,78 @@ public class MainActivity extends AppCompatActivity {
      */
     private void updateDisplay() {
 
-        ArrayList<HashMap<String, String>> data = new ArrayList<>();
+        if (taskList == null) {
 
-//        Sample Data
-        HashMap<String, String> map1 = new HashMap<>();
-        map1.put("room_name", "Physical Plant Front Entrance");
-        map1.put("task1", "Clean Glass");
-        map1.put("task2", "Dust");
-        map1.put("task3", "Vacuum");
-        map1.put("comment", "Make sure you vacuum in all the corners!");
-        data.add(map1);
+//            Toast.makeText(MainActivity.this, getString(R.string.connection_error), Toast.LENGTH_SHORT).show();
 
-        HashMap<String, String> map2 = new HashMap<>();
-        map2.put("room_name", "Physical Plant Front Office");
-        map2.put("task1", "Dust Ledges and Counters");
-        map2.put("task2", "Trash and Recycling");
-        map2.put("task3", "Vacuum");
-        map2.put("comment", "The windowsills were a bit dusty last time, make sure you get all of them.");
-        data.add(map2);
+        }
 
-        HashMap<String, String> map3 = new HashMap<>();
-        map3.put("room_name", "Physical Plant South Offices/Work Areas");
-        map3.put("task1", "Trash and Recycling");
-        map3.put("task2", "Dust");
-        map3.put("task3", "Vacuum");
-        map3.put("comment", "Nice job!");
-        data.add(map3);
+        ArrayList<HashMap<String, String>> data = new ArrayList<HashMap<String, String>>();
 
-        HashMap<String, String> map4 = new HashMap<>();
-        map4.put("room_name", "Physical Plant Break Room");
-        map4.put("task1", "Disinfect Tables and Chairs");
-        map4.put("task2", "Clean Sink and Counters");
-        map4.put("task3", "Trash and Recycling");
-        map4.put("comment", "Please wash all the dishes in the sink when you clean it.");
-        data.add(map4);
 
-        HashMap<String, String> map5 = new HashMap<>();
-        map5.put("room_name", "Physical Plant Mechanical Maint. Office");
-        map5.put("task1", "Dust");
-        map5.put("task2", "Sweep/Wet Mop");
-        map5.put("task3", "Trash and Recycling");
-        map5.put("comment", "Looks good, keep up the good work!");
-        data.add(map5);
+        int i = 0;
+        for (MainTask item : taskList) {
+            Log.d("comment", "Blah");
+            if (i == 0) {
+                HashMap<String, String> map1 = new HashMap<>();
+                map1.put("room_name", "Physical Plant Front Entrance");
+                map1.put("task1", "Clean Glass");
+                map1.put("task2", "Dust");
+                map1.put("task3", "Vacuum");
+                map1.put("comment", item.getComments());
+                data.add(map1);
+            } else if (i == 1) {
+                HashMap<String, String> map2 = new HashMap<>();
+                map2.put("room_name", "Physical Plant Front Office");
+                map2.put("task1", "Dust Ledges and Counters");
+                map2.put("task2", "Trash and Recycling");
+                map2.put("task3", "Vacuum");
+                map2.put("comment", item.getComments());
+                data.add(map2);
+            } else if (i == 2) {
+                HashMap<String, String> map3 = new HashMap<>();
+                map3.put("room_name", "Physical Plant South Offices/Work Areas");
+                map3.put("task1", "Trash and Recycling");
+                map3.put("task2", "Dust");
+                map3.put("task3", "Vacuum");
+                map3.put("comment", item.getComments());
+                data.add(map3);
+            } else if (i == 3) {
+                HashMap<String, String> map4 = new HashMap<>();
+                map4.put("room_name", "Physical Plant Break Room");
+                map4.put("task1", "Disinfect Tables and Chairs");
+                map4.put("task2", "Clean Sink and Counters");
+                map4.put("task3", "Trash and Recycling");
+                map4.put("comment", item.getComments());
+                data.add(map4);
+            } else if (i == 4) {
+                HashMap<String, String> map5 = new HashMap<>();
+                map5.put("room_name", "Physical Plant Mechanical Maint. Office");
+                map5.put("task1", "Dust");
+                map5.put("task2", "Sweep/Wet Mop");
+                map5.put("task3", "Trash and Recycling");
+                map5.put("comment", item.getComments());
+                data.add(map5);
+            } else if (i == 5) {
+                HashMap<String, String> map6 = new HashMap<>();
+                map6.put("room_name", "Physical Plant North Offices and Hallway");
+                map6.put("task1", "Trash and Recycling");
+                map6.put("task2", "Dust");
+                map6.put("task3", "Vacuum");
+                map6.put("comment", item.getComments());
+                data.add(map6);
+            } else if (i == 6) {
+                HashMap<String, String> map7 = new HashMap<>();
+                map7.put("room_name", "Physical Plant Main Restrooms");
+                map7.put("task1", "Sweep/Wet Mop");
+                map7.put("task2", "Disinfect Toilets/Urinals & Sinks ");
+                map7.put("task3", "Clean Glass");
+                map7.put("comment", item.getComments());
+                data.add(map7);
+            }
+            i++;
+        }
 
-        HashMap<String, String> map6 = new HashMap<>();
-        map6.put("room_name", "Physical Plant North Offices and Hallway");
-        map6.put("task1", "Trash and Recycling");
-        map6.put("task2", "Dust");
-        map6.put("task3", "Vacuum");
-        map6.put("comment", "No comment.");
-        data.add(map6);
-
-        HashMap<String, String> map7 = new HashMap<>();
-        map7.put("room_name", "Physical Plant Main Restrooms");
-        map7.put("task1", "Sweep/Wet Mop");
-        map7.put("task2", "Disinfect Toilets/Urinals & Sinks ");
-        map7.put("task3", "Clean Glass");
-        map7.put("comment", "Sorry the bathrooms are so nasty today...");
-        data.add(map7);
 
         int resource = R.layout.task_list;
         String[] from = {"room_name", "task1", "task2", "task3", "comment"};
@@ -289,4 +267,5 @@ public class MainActivity extends AppCompatActivity {
         SimpleAdapter adapter = new SimpleAdapter(this, data, resource, from, to);
         taskListView.setAdapter(adapter);
     }
+
 }
