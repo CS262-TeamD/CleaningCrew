@@ -1,15 +1,19 @@
 package edu.calvin.cs262teamd.cleaningcrew;
 
+import android.app.AlertDialog;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
@@ -32,7 +36,7 @@ public class EmployeeContactsActivity extends AppCompatActivity {
     private JSONArray employees;
     private String search;
 
-    private List<Person> employeeList = new ArrayList<>();
+    private final List<Person> employeeList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +48,36 @@ public class EmployeeContactsActivity extends AppCompatActivity {
 
         employeeListView = (ListView) findViewById(R.id.employeeListView);
 
-        // Set the search to its initial state
+        FloatingActionButton helpButton = (FloatingActionButton) findViewById(R.id.helpButton);
+
+        helpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(EmployeeContactsActivity.this);
+                builder.setTitle("HELP");
+                builder.setMessage("You can use the Search page to find employees by first name or last name. The page displays a list of employees and their information. You can filter results by name using the search bar.\n" +
+                        "\n" +
+                        "Imagine you are looking for an employee named Kyle Campbell.\n" +
+                        "1. Click on the magnifying glass icon in the top right corner.\n" +
+                        "2. Use the keyboard to type \"Kyle\", or \"Campbell\". Search is case-insensitive, meaning searching for \"kyle\" would work too.\n" +
+                        "3. Kyle Campbell's information will appear.\n" +
+                        "4. Click the \"X\" in the top right corner to return to the list of all employees.\n" +
+                        "5. Click the triangle button in the lower left corner to exit the search page.\n");
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
+//         Set the search to its initial state
         search = "";
 
-//        // Get the list of employees
+//         Get the list of employees
 //        getEmployees();
 
         try {
@@ -238,7 +268,7 @@ public class EmployeeContactsActivity extends AppCompatActivity {
         for(Integer i=0; i < employees.length(); i++) {
             try  {
                 JSONObject employee = employees.getJSONObject(i);
-                if(employee.getString("name").contains(search)) {
+                if(employee.getString("name").toLowerCase().contains(search.toLowerCase())) {
                     HashMap<String, String> map = new HashMap<>();
                     if(employee.has("name")) {
                         map.put("employee_name", employee.getString("name"));
@@ -261,7 +291,6 @@ public class EmployeeContactsActivity extends AppCompatActivity {
                 je.printStackTrace();
             }
         }
-
         return data;
     }
 }
