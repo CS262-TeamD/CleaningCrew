@@ -1,33 +1,34 @@
 package edu.calvin.cs262teamd.cleaningcrew;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private List<MainTask> taskList = new ArrayList<>();
+    private final List<MainTask> taskList = new ArrayList<>();
     private ListView taskListView;
 
     @Override
@@ -44,6 +45,30 @@ public class MainActivity extends AppCompatActivity {
         new GetPlayerTask().execute(createURL());
 
          updateDisplay();
+
+        FloatingActionButton helpButton = (FloatingActionButton) findViewById(R.id.helpButton);
+
+        helpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("HELP");
+                builder.setMessage("Here is your main housekeeping log \n\n" +
+                        "Here, you can see each room you are assigned to and the tasks that you must accomplish in each room.\n\n Beneath these tasks, there may be a short comment from your supervisor regarding that room, so be sure to read it.\n\n" +
+                        "As you complete your tasks throughout the day, check the box corresponding to the completed task.\n\n" +
+                        "Both you and your supervisors will be able to see which tasks you have completed and when they were completed.\n\n" +
+                        "Checking a box on this page automatically submits that task item, so your supervisor will be able to see it in real time.");
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
     }
 
     /**
@@ -99,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
                     connection.disconnect();
                 }
             }
-            Log.d("result", result.toString());
+            Log.d("result", result != null ? result.toString() : null);
             return result;
         }
 
@@ -115,7 +140,6 @@ public class MainActivity extends AppCompatActivity {
             }
             MainActivity.this.updateDisplay();
         }
-
 
         /**
          * Converts the JSON player data to an arraylist suitable for a listview adapter
@@ -183,17 +207,10 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Updates the display with some sample data (for now)
      * !TODO - Update updateDisplay() method to use actual data and be able to have varying numbers of tasks in each room
-     * TODO - make the "select all" checkbox work
      */
     private void updateDisplay() {
 
-        if (taskList == null) {
-
-//            Toast.makeText(MainActivity.this, getString(R.string.connection_error), Toast.LENGTH_SHORT).show();
-
-        }
-
-        ArrayList<HashMap<String, String>> data = new ArrayList<HashMap<String, String>>();
+        ArrayList<HashMap<String, String>> data = new ArrayList<>();
 
 
         int i = 0;
@@ -259,7 +276,6 @@ public class MainActivity extends AppCompatActivity {
             i++;
         }
 
-
         int resource = R.layout.task_list;
         String[] from = {"room_name", "task1", "task2", "task3", "comment"};
         int[] to = {R.id.room_name, R.id.task_1, R.id.task_2, R.id.task_3, R.id.commentBox};
@@ -267,5 +283,4 @@ public class MainActivity extends AppCompatActivity {
         SimpleAdapter adapter = new SimpleAdapter(this, data, resource, from, to);
         taskListView.setAdapter(adapter);
     }
-
 }

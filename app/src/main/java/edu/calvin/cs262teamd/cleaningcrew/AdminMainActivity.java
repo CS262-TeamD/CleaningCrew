@@ -1,20 +1,20 @@
 package edu.calvin.cs262teamd.cleaningcrew;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,11 +32,7 @@ import java.util.List;
 public class AdminMainActivity extends AppCompatActivity {
 
     private ListView adminTaskListView;
-    private List<MainTask> adminTaskList = new ArrayList<>();
-    private Button submitCommentsButton;
-    private EditText adminCommentBox;
-    private TextView enterCommentsTextView;
-
+    private final List<MainTask> adminTaskList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +41,9 @@ public class AdminMainActivity extends AppCompatActivity {
 
         adminTaskListView = (ListView) findViewById(R.id.adminTaskListView);
 
-        submitCommentsButton = (Button) findViewById(R.id.admin_submit_comment);
+        Button submitCommentsButton = (Button) findViewById(R.id.admin_submit_comment);
 
-        adminCommentBox = (EditText) findViewById(R.id.admin_commentBox);
+        EditText adminCommentBox = (EditText) findViewById(R.id.admin_commentBox);
 
 //        LinearLayout parentRow = (LinearLayout) adminTaskListView.getParent();
 //
@@ -66,6 +62,25 @@ public class AdminMainActivity extends AppCompatActivity {
 
         updateDisplay();
 
+        FloatingActionButton helpButton = (FloatingActionButton) findViewById(R.id.helpButton);
+        helpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(AdminMainActivity.this);
+                builder.setTitle("HELP");
+                builder.setMessage("On this page, you can see your employees' progress on their tasks. The checkboxes will update as they complete their tasks and mark them.\n\n" +
+                        "You can also leave comments for them to read by entering your comment in the box, and pressing \"Submit Comment\"");
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
     }
 
     /**
@@ -75,13 +90,7 @@ public class AdminMainActivity extends AppCompatActivity {
      */
     private void updateDisplay() {
 
-        if (adminTaskList == null) {
-
-//            Toast.makeText(MainActivity.this, getString(R.string.connection_error), Toast.LENGTH_SHORT).show();
-
-        }
-
-        ArrayList<HashMap<String, String>> data = new ArrayList<HashMap<String, String>>();
+        ArrayList<HashMap<String, String>> data = new ArrayList<>();
 
 
         int i = 0;
@@ -153,7 +162,6 @@ public class AdminMainActivity extends AppCompatActivity {
             }
             i++;
         }
-
 
         int resource = R.layout.admin_task_list;
         String[] from = {"room_name", "task1", "task2", "task3", "comment", "submit"};
@@ -286,7 +294,7 @@ public class AdminMainActivity extends AppCompatActivity {
                     connection.disconnect();
                 }
             }
-            Log.d("result", result.toString());
+            Log.d("result", result != null ? result.toString() : null);
             return result;
         }
 
@@ -329,7 +337,7 @@ public class AdminMainActivity extends AppCompatActivity {
 
     }
 
-    public void postComments(View view) {
+    public void postComments() {
         new PutComment().execute(createURL("comment"));
     }
 }

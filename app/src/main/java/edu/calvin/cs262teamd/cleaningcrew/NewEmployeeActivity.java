@@ -1,7 +1,10 @@
 package edu.calvin.cs262teamd.cleaningcrew;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,6 +25,28 @@ public class NewEmployeeActivity extends AppCompatActivity {
             public void onClick(View v) {
 //                TODO - Do something with the new user name and ID
                 startActivity(new Intent(getApplicationContext(), AdminMainActivity.class));
+            }
+        });
+
+        FloatingActionButton helpButton = (FloatingActionButton) findViewById(R.id.helpButton);
+
+        helpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(NewEmployeeActivity.this);
+                builder.setTitle("HELP");
+                builder.setMessage("On this page, you can add new employees as you hire them.\n\n" +
+                                    "Simply enter their name in the top box and their calvin email id (e.g. \"abc123\"@students.calvin.edu) " +
+                                    "in the bottom box and press Submit.");
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
     }

@@ -1,17 +1,18 @@
 package edu.calvin.cs262teamd.cleaningcrew;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -19,12 +20,9 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class UserInfoActivity extends AppCompatActivity {
 
-    private Button submitButton;
     private EditText numberEditText;
     private EditText emailEditText;
 
@@ -39,9 +37,10 @@ public class UserInfoActivity extends AppCompatActivity {
         // set the title to settings
         setTitle("Settings");
 
-        submitButton = (Button) findViewById(R.id.submitContactInfo);
+        Button submitButton = (Button) findViewById(R.id.submitContactInfo);
         numberEditText = (EditText) findViewById(R.id.editTextPhoneNumberInfo);
         emailEditText = (EditText) findViewById(R.id.editTextEmailInfo);
+        FloatingActionButton helpButton = (FloatingActionButton) findViewById(R.id.helpButton);
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +56,25 @@ public class UserInfoActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+            }
+        });
+
+        helpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(UserInfoActivity.this);
+                builder.setTitle("HELP");
+                builder.setMessage("On this page, you can set your contact information so that it is up to date for your co-workers to see\n\n" +
+                                    "Simply enter the information as you want it to be shown, and press Submit.");
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
 
