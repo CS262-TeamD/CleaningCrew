@@ -9,16 +9,18 @@ package edu.calvin.cs262teamd.cleaningcrew;
 public class MainTask {
 
     private int id, roomNumber;
-    private String description, buildingName;
+    private String description, buildingName, comments;
     private boolean isComplete;
+
 
     MainTask() { /* a default constructor, required by Gson */  }
 
-    MainTask(int id, String description, int roomNumber, String buildingName, boolean isComplete) {
+    MainTask(int id, String description, int roomNumber, String buildingName, String comments, boolean isComplete) {
         this.id = id;
         this.description = description;
         this.roomNumber = roomNumber;
         this.buildingName = buildingName;
+        this.comments = comments;
         this.isComplete = isComplete;
     }
 
@@ -32,6 +34,7 @@ public class MainTask {
         return roomNumber;
     }
     public String getBuildingName() { return buildingName; }
+    public String getComments() { return comments; }
     public boolean getIsComplete() { return isComplete; }
 
     public void setId(int id) {
@@ -44,6 +47,7 @@ public class MainTask {
         this.roomNumber = roomNumber;
     }
     public void setBuildingName(String buildingName) { this.buildingName = buildingName; }
+    public void setComments (String comments) { this.comments = comments; }
     public void setIsComplete(boolean isComplete) { this.isComplete = isComplete; }
 
 
