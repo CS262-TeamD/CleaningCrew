@@ -191,11 +191,11 @@ public class EmployeeContactsActivity extends AppCompatActivity {
             for (int i = 0; i < employeeArray.length(); i++) {
                 JSONObject emp = new JSONObject();
                 JSONObject empI = employeeArray.getJSONObject(i);
-                if(empI.has("emailaddress")) {
-                    emp.put("name", empI.get("emailaddress"));
-                }
                 if(empI.has("name")) {
-                    emp.put("emailaddress", empI.get("name"));
+                    emp.put("name", empI.get("name"));
+                }
+                if(empI.has("emailaddress")) {
+                    emp.put("emailaddress", empI.get("emailaddress"));
                 }
                 if(empI.has("phonenumber")) {
                     emp.put("phonenumber", empI.get("phonenumber"));
